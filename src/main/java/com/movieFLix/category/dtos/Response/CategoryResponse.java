@@ -1,4 +1,4 @@
-package com.movieFLix.dtos.Response;
+package com.movieFLix.category.dtos.Response;
 
 import lombok.Builder;
 

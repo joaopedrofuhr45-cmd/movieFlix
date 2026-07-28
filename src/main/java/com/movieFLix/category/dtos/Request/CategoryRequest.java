@@ -1,4 +1,4 @@
-package com.movieFLix.dtos.Request;
+package com.movieFLix.category.dtos.Request;
 
 import lombok.Builder;
 
