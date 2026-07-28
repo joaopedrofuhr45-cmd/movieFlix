@@ -11,13 +11,13 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StreamingService {
-    private JpaRepositoryStreaming jpaRepositoryStreaming
+    private StreamingJpaRepository streamingJpaRepository;
 
-    public List<EntityJpaStreaming> findAllStreamings() { return streamingRepository.findAll(); }
+    public List<EntityJpaStreaming> findAllStreamings() { return streamingJpaRepository.findAll(); }
 
-    public EntityJpaStreaming createStreaming(EntityJpaStreaming streaming) { return streamingRepository.save(streaming); }
+    public EntityJpaStreaming createStreaming(EntityJpaStreaming streaming) { return streamingJpaRepository.save(streaming); }
 
-    public Optional<EntityJpaStreaming> findById(Long id) { return streamingRepository.findById(id); }
+    public Optional<EntityJpaStreaming> findById(Long id) { return streamingJpaRepository.findById(id); }
 
-    public void deleteStreaming(Long id) { streamingRepository.deleteById(id); }
+    public void deleteStreaming(Long id) { streamingJpaRepository.deleteById(id); }
 }
