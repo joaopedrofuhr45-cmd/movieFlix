@@ -1,4 +1,7 @@
 package com.movieFLix.Streaming.dto.response;
 
-public class StreamingResponse {
+import lombok.Builder;
+
+@Builder
+public record StreamingResponse(Long id, String name) {
 }
