@@ -1,21 +1,19 @@
-package com.movieFLix.Streaming;
+package com.movieFlix.Streaming;
 
-
-import com.movieFLix.Streaming.dto.request.StreamingRequest;
-import com.movieFLix.Streaming.dto.response.StreamingResponse;
-import com.movieFLix.Streaming.mapper.StreamingMapper;
+import com.movieFlix.Streaming.dto.request.StreamingRequest;
+import com.movieFlix.Streaming.dto.response.StreamingResponse;
+import com.movieFlix.Streaming.mapper.StreamingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController()
 @RequestMapping("/movieFlix/Streaming")
 @RequiredArgsConstructor
 public class StreamingController {
-    private StreamingService streamingService;
+    private final StreamingService streamingService;
 
     @GetMapping("/movieFlix/Streaming")
     public ResponseEntity<List<StreamingResponse>> getAllStreamings() {
@@ -28,5 +26,18 @@ public class StreamingController {
         EntityJpaStreaming entityJpaStreaming = StreamingMapper.toEntityJpaStreaming(request);
         EntityJpaStreaming savedStreaming = streamingService.createStreaming(entityJpaStreaming);
         return ResponseEntity.status(HttpStatus.CREATED).body(StreamingMapper.toStreamingResponse(savedStreaming));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<StreamingResponse> findById(@PathVariable Long id) {
+        return streamingService.findById(id)
+                .map(streaming -> ResponseEntity.ok(StreamingMapper.toStreamingResponse(streaming)))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteByStreamingId(@PathVariable Long id) {
+        streamingService.deleteStreaming(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

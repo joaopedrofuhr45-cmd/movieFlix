@@ -1,4 +1,4 @@
-package com.movieFLix.category;
+package com.movieFlix.category;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.movieFLix.category;
+package com.movieFlix.category;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

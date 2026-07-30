@@ -1,7 +1,8 @@
-package com.movieFLix.Streaming;
-import lombok.*;
+package com.movieFlix.category;
+
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Builder
 @NoArgsConstructor
@@ -9,8 +10,8 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "streaming")
-public class EntityJpaStreaming {
+@Table(name = "category")
+public class CategoryEntityJpa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

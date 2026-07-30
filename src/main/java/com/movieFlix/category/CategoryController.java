@@ -1,8 +1,8 @@
-package com.movieFLix.category;
+package com.movieFlix.category;
 
-import com.movieFLix.category.mapper.CategoryMapper;
-import com.movieFLix.category.dtos.Request.CategoryRequest;
-import com.movieFLix.category.dtos.Response.CategoryResponse;
+import com.movieFlix.category.mapper.CategoryMapper;
+import com.movieFlix.category.dtos.Request.CategoryRequest;
+import com.movieFlix.category.dtos.Response.CategoryResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,10 +1,10 @@
-package com.movieFLix.Streaming.mapper;
+package com.movieFlix.Streaming.mapper;
 
 
 
-import com.movieFLix.Streaming.EntityJpaStreaming;
-import com.movieFLix.Streaming.dto.request.StreamingRequest;
-import com.movieFLix.Streaming.dto.response.StreamingResponse;
+import com.movieFlix.Streaming.EntityJpaStreaming;
+import com.movieFlix.Streaming.dto.request.StreamingRequest;
+import com.movieFlix.Streaming.dto.response.StreamingResponse;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

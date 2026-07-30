@@ -1,4 +1,4 @@
-package com.movieFLix.Streaming;
+package com.movieFlix.Streaming;
 
 
 

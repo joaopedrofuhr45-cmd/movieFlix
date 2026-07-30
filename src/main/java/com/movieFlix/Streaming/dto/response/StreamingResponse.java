@@ -1,4 +1,4 @@
-package com.movieFLix.Streaming.dto.response;
+package com.movieFlix.Streaming.dto.response;
 
 import lombok.Builder;
 
