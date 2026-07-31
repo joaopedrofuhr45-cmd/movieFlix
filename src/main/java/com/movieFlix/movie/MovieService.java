@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 public class MovieService {
     private final MovieRepository movieRepository;
 
-    public MovieEntityJpa saved(MovieRequest movieRequest){
-
+    public MovieEntityJpa saved(MovieEntityJpa movieEntityJpa){
+        return movieRepository.save(movieEntityJpa);
     }
 
 }
