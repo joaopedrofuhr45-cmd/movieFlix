@@ -35,7 +35,7 @@ public class MovieMapper {
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .releaseDate(entity.getReleaseDate())
-                .rating(entity.getRating())
+                .rating(entity.getRating() != null ? entity.getRating().doubleValue() : null)
                 .categories(entity.getCategories().stream()
                         .map(CategoryEntityJpa::getId)
                         .toList())
