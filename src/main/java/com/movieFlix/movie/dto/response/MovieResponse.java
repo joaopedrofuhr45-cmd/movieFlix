@@ -8,11 +8,10 @@ import java.util.List;
 
 @Builder
 public record MovieResponse(
-        Long id,
         String title,
         String description,
         LocalDate releaseDate,
-        BigDecimal rating,
+        double rating,
         List<Long> categories,
         List<Long> streamings
 ) {}
