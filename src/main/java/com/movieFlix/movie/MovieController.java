@@ -1,39 +1,46 @@
 package com.movieFlix.movie;
 
+import com.movieFlix.Streaming.EntityJpaStreaming;
+import com.movieFlix.category.CategoryEntityJpa;
 import com.movieFlix.movie.dto.request.MovieRequest;
 import com.movieFlix.movie.dto.response.MovieResponse;
+import com.movieFlix.movie.finders.finderCategory.FinderCategory;
+import com.movieFlix.movie.finders.finderCategory.FinderStreaming;
 import com.movieFlix.movie.mapper.MovieMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("movieFlix/Movie")
 @RequiredArgsConstructor
 public class MovieController {
     private final MovieService movieService;
+    private final FinderCategory finderCategory;
+    private final FinderStreaming finderStreaming;
 
-    @PostMapping("movieFlix/movie/salvar")
-    public ResponseEntity<MovieResponse> Create(@RequestBody MovieRequest movieRequest){
-        MovieEntityJpa movieEntityJpa = MovieMapper.toEntityJpa(movieRequest);
-        MovieEntityJpa saved = movieService.saved(movieEntityJpa);
+    @PostMapping("saver")
+    public ResponseEntity<MovieResponse> Create(@RequestBody MovieRequest movieRequest) {
+        List<CategoryEntityJpa> categories = finderCategory.findAllById(movieRequest.category());
+        List<EntityJpaStreaming> streamings = finderStreaming.findAllStreamingId(movieRequest.streaming());
+
+        MovieEntityJpa movie = MovieMapper.toEntityJpa(movieRequest);
+        movie.setCategories(categories);
+        movie.setStreamings(streamings);
+
+        MovieEntityJpa saved = movieService.saved(movie);
         return ResponseEntity.status(HttpStatus.CREATED).body(MovieMapper.toResponse(saved));
     }
 
 
-
-
-
-
-
-
-
-
-
+    @GetMapping("getAll")
+    public ResponseEntity<List<MovieResponse>> getALL() {
+        List<MovieResponse> getAll = movieService.getALL().stream().map((MovieMapper::toResponse)).toList();/*movie -> MovieMapper.toResponse(movie)*/
+        return ResponseEntity.ok(getAll);
+    }
 
 
 }

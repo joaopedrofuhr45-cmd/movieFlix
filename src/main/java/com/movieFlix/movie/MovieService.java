@@ -4,6 +4,8 @@ import com.movieFlix.movie.dto.request.MovieRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class MovieService {
@@ -13,4 +15,7 @@ public class MovieService {
         return movieRepository.save(movieEntityJpa);
     }
 
+    public List<MovieEntityJpa> getALL(){
+        return movieRepository.findAll();
+    }
 }
