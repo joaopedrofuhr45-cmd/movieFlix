@@ -36,11 +36,15 @@ public class MovieController {
     }
 
 
-    @GetMapping("getAll")
-    public ResponseEntity<List<MovieResponse>> getALL() {
-        List<MovieResponse> getAll = movieService.getALL().stream().map((MovieMapper::toResponse)).toList();/*movie -> MovieMapper.toResponse(movie)*/
-        return ResponseEntity.ok(getAll);
-    }
+
+
+
+
+
+
+
+
+
 
 
 }
