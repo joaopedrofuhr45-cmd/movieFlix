@@ -1,4 +1,4 @@
-package com.movieFlix.movie.finders.finderCategory;
+package com.movieFlix.movie.finders;
 
 import com.movieFlix.category.CategoryEntityJpa;
 import com.movieFlix.category.CategoryRepository;

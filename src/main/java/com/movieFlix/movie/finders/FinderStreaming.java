@@ -1,4 +1,4 @@
-package com.movieFlix.movie.finders.finderCategory;
+package com.movieFlix.movie.finders;
 
 import com.movieFlix.Streaming.EntityJpaStreaming;
 import com.movieFlix.Streaming.StreamingJpaRepository;
