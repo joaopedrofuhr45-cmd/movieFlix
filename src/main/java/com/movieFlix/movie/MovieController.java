@@ -36,16 +36,16 @@ public class MovieController {
     }
 
     @GetMapping("/{Id}")
-    public ResponseEntity<MovieResponse> findById(@PathVariable Long id){
-    return movieService.findByID(id)
-            .map( movie -> ResponseEntity.ok(MovieMapper.toResponse(movie))).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<MovieResponse> findById(@PathVariable Long id) {
+        return movieService.findByID(id)
+                .map(movie -> ResponseEntity.ok(MovieMapper.toResponse(movie))).orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<MovieResponse> updateMovie(@PathVariable Long id,  @RequestBody MovieRequest movieRequest){
+    public ResponseEntity<MovieResponse> updateMovie(@PathVariable Long id, @RequestBody MovieRequest movieRequest) {
 
     }
-
+}
 
 
 

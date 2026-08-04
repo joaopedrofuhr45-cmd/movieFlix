@@ -1,6 +1,10 @@
 package com.movieFlix.movie;
 
+import com.movieFlix.Streaming.EntityJpaStreaming;
+import com.movieFlix.category.CategoryEntityJpa;
 import com.movieFlix.movie.dto.request.MovieRequest;
+import com.movieFlix.movie.finders.FinderCategory;
+import com.movieFlix.movie.finders.FinderStreaming;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,28 +15,36 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MovieService {
     private final MovieRepository movieRepository;
+    private final FinderCategory finderCategory;
+    private final FinderStreaming finderStreaming;
 
-    public MovieEntityJpa saved(MovieEntityJpa movieEntityJpa){
+    public MovieEntityJpa saved(MovieEntityJpa movieEntityJpa) {
         return movieRepository.save(movieEntityJpa);
     }
 
-    public Optional<MovieEntityJpa> findByID(Long id){
+    public Optional<MovieEntityJpa> findByID(Long id) {
         return movieRepository.findById(id);
     }
 
-    public Optional<MovieEntityJpa> update(Long id, MovieEntityJpa updateMovie){
+    public Optional<MovieEntityJpa> update(Long id, MovieEntityJpa updateMovie) {
         Optional<MovieEntityJpa> optionalMovie = movieRepository.findById(id);
-        if (optionalMovie.isPresent()){
+        if (optionalMovie.isPresent()) {
             MovieEntityJpa movie = optionalMovie.get();
             movie.setTitle(updateMovie.getTitle());
             movie.setId(updateMovie.getId());
-            movie.setCategories(updateMovie.getCategories());
+            movie.setUpdatedAt(updateMovie.getUpdatedAt());
             movie.setCreatedAt(updateMovie.getCreatedAt());
             movie.setDescription(updateMovie.getDescription());
             movie.setRating(updateMovie.getRating());
             movie.setReleaseDate(updateMovie.getReleaseDate());
-            movie.setStreamings(updateMovie.getStreamings());
-            movie.setUpdatedAt(updateMovie.getUpdatedAt());
+            List<Long> categoriesId = updateMovie.getCategories().stream().map(CategoryEntityJpa::getId).toList();
+            List<Long> streamingIds = updateMovie.getStreamings().stream().map(EntityJpaStreaming::getId).toList();
+
+            List<CategoryEntityJpa> categories = finderCategory.findAllById(categoriesId);
+            List<EntityJpaStreaming> streamings = finderStreaming.findAllStreamingId(streamingIds);
+
+            movie.setCategories(categories);
+            movie.setStreamings(streamings);
         }
         return optionalMovie;
     }
