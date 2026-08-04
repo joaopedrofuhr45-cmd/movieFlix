@@ -20,4 +20,20 @@ public class MovieService {
         return movieRepository.findById(id);
     }
 
+    public Optional<MovieEntityJpa> update(Long id, MovieEntityJpa updateMovie){
+        Optional<MovieEntityJpa> optionalMovie = movieRepository.findById(id);
+        if (optionalMovie.isPresent()){
+            MovieEntityJpa movie = optionalMovie.get();
+            movie.setTitle(updateMovie.getTitle());
+            movie.setId(updateMovie.getId());
+            movie.setCategories(updateMovie.getCategories());
+            movie.setCreatedAt(updateMovie.getCreatedAt());
+            movie.setDescription(updateMovie.getDescription());
+            movie.setRating(updateMovie.getRating());
+            movie.setReleaseDate(updateMovie.getReleaseDate());
+            movie.setStreamings(updateMovie.getStreamings());
+            movie.setUpdatedAt(updateMovie.getUpdatedAt());
+        }
+        return optionalMovie;
+    }
 }
