@@ -1,4 +1,4 @@
-package com.movieFlix.movie;
+package com.movieFlix.movie.persistencia;
 
 import com.movieFlix.Streaming.EntityJpaStreaming;
 import com.movieFlix.category.CategoryEntityJpa;

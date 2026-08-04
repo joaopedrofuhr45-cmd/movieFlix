@@ -2,7 +2,7 @@ package com.movieFlix.movie.mapper;
 
 import com.movieFlix.Streaming.EntityJpaStreaming;
 import com.movieFlix.category.CategoryEntityJpa;
-import com.movieFlix.movie.MovieEntityJpa;
+import com.movieFlix.movie.persistencia.MovieEntityJpa;
 import com.movieFlix.movie.dto.request.MovieRequest;
 import com.movieFlix.movie.dto.response.MovieResponse;
 import lombok.experimental.UtilityClass;

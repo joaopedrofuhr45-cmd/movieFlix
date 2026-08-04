@@ -2,9 +2,10 @@ package com.movieFlix.movie;
 
 import com.movieFlix.Streaming.EntityJpaStreaming;
 import com.movieFlix.category.CategoryEntityJpa;
-import com.movieFlix.movie.dto.request.MovieRequest;
 import com.movieFlix.movie.finders.FinderCategory;
 import com.movieFlix.movie.finders.FinderStreaming;
+import com.movieFlix.movie.persistencia.MovieEntityJpa;
+import com.movieFlix.movie.persistencia.MovieRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -48,4 +49,10 @@ public class MovieService {
         }
         return optionalMovie;
     }
+
+    public List<MovieEntityJpa> findByCategories(Long categoriesid){
+        return  movieRepository.findByCategories(List.of(CategoryEntityJpa.builder().id(categoriesid).build()));
+    }
+
+
 }

@@ -7,13 +7,13 @@ import com.movieFlix.movie.dto.response.MovieResponse;
 import com.movieFlix.movie.finders.FinderCategory;
 import com.movieFlix.movie.finders.FinderStreaming;
 import com.movieFlix.movie.mapper.MovieMapper;
+import com.movieFlix.movie.persistencia.MovieEntityJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("movieFlix/Movie")
@@ -52,6 +52,18 @@ public class MovieController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+
+    @GetMapping("/Search")
+    public ResponseEntity<List<MovieResponse>> findByCategory(@RequestParam Long category) {
+        List<MovieResponse> movies = movieService.findByCategories(category)
+                .stream()
+                .map(MovieMapper::toResponse)
+                .toList();
+        return  ResponseEntity.ok(movies);
+    }
+
+
 }
 
 
