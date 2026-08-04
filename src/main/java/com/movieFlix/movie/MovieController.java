@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("movieFlix/Movie")
@@ -41,9 +42,15 @@ public class MovieController {
                 .map(movie -> ResponseEntity.ok(MovieMapper.toResponse(movie))).orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<MovieResponse> updateMovie(@PathVariable Long id, @RequestBody MovieRequest movieRequest) {
-
+    @PutMapping("/{id}")
+    public ResponseEntity<MovieResponse> updateMovie(
+            @PathVariable Long id,
+            @RequestBody MovieRequest movieRequest) {
+        MovieEntityJpa movieEntityJpa = MovieMapper.toEntityJpa(movieRequest);
+        return movieService.update(id, movieEntityJpa)
+                .map(MovieMapper::toResponse)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
 
@@ -55,4 +62,4 @@ public class MovieController {
 
 
 
-}
+
