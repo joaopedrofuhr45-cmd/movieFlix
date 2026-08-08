@@ -17,14 +17,14 @@ public class CategoryController {
     private final CategoryService categoryService;
 
 
-    @GetMapping("/movieFlix/Category")
+    @GetMapping
     public ResponseEntity<List<CategoryResponse>> getALLCategories() {
         List<CategoryResponse> categories = categoryService.findAlLCategories().stream().map(CategoryMapper::toCategoryResponse).toList();
         return ResponseEntity.ok(categories);
     }
 
 
-    @PostMapping("/movieFlix/Category")
+    @PostMapping
     public ResponseEntity<CategoryResponse> create(@RequestBody CategoryRequest request) {
         CategoryEntityJpa categoryEntityJpa = CategoryMapper.toCategoryEntityJpa(request);
         CategoryEntityJpa savedCategory = categoryService.createCategory(categoryEntityJpa);
