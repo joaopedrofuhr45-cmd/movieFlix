@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public List<CategoryEntityJpa> findAlLCategories(){
        return categoryRepository.findAll();

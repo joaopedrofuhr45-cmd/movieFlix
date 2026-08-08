@@ -15,13 +15,13 @@ import java.util.List;
 public class StreamingController {
     private final StreamingService streamingService;
 
-    @GetMapping("/movieFlix/Streaming")
+    @GetMapping
     public ResponseEntity<List<StreamingResponse>> getAllStreamings() {
         List<StreamingResponse> streamings = streamingService.findAllStreamings().stream().map(StreamingMapper::toStreamingResponse).toList();
         return ResponseEntity.ok(streamings);
     }
 
-    @PostMapping("/movieFlix/Streaming")
+    @PostMapping
     public ResponseEntity<StreamingResponse> create(@RequestBody StreamingRequest request) {
         EntityJpaStreaming entityJpaStreaming = StreamingMapper.toEntityJpaStreaming(request);
         EntityJpaStreaming savedStreaming = streamingService.createStreaming(entityJpaStreaming);

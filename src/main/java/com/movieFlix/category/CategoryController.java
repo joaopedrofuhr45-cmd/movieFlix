@@ -14,10 +14,10 @@ import java.util.List;
 @RequestMapping("/movieFlix/Category")
 @RequiredArgsConstructor
 public class CategoryController {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
 
-    @GetMapping("/movieFLix/Category")
+    @GetMapping("/movieFlix/Category")
     public ResponseEntity<List<CategoryResponse>> getALLCategories() {
         List<CategoryResponse> categories = categoryService.findAlLCategories().stream().map(CategoryMapper::toCategoryResponse).toList();
         return ResponseEntity.ok(categories);

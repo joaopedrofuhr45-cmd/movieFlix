@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class StreamingService {
-    private StreamingJpaRepository streamingJpaRepository;
+    private final StreamingJpaRepository streamingJpaRepository;
 
     public List<EntityJpaStreaming> findAllStreamings() { return streamingJpaRepository.findAll(); }
 
