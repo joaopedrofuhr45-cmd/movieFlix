@@ -1,8 +1,8 @@
 package com.movieFlix.category.mapper;
 import com.movieFlix.category.CategoryEntityJpa;
-import com.movieFlix.category.dtos.Request.CategoryRequest;
+import com.movieFlix.category.dto.Request.CategoryRequest;
 
-import com.movieFlix.category.dtos.Response.CategoryResponse;
+import com.movieFlix.category.dto.Response.CategoryResponse;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
